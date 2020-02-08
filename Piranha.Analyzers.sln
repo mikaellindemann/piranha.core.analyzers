@@ -1,0 +1,70 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
+MinimumVisualStudioVersion = 15.0.26124.0
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BD012B1D-F0E1-4029-81BE-04D66BBD5AFE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Piranha.Analyzers", "src\Piranha.Analyzers\Piranha.Analyzers.csproj", "{3F3E3590-CB01-4A9C-8628-BC7A23C0B64D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{9FA21F26-134E-462C-AA04-2134731A6CFB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Piranha.Analyzers.Test", "test\Piranha.Analyzers.Test\Piranha.Analyzers.Test.csproj", "{09015A43-EBE4-4102-A54E-FF58ADF94969}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuspec", ".nuspec", "{89374D21-B221-4B56-99EC-569DBE295AF1}"
+	ProjectSection(SolutionItems) = preProject
+		nuspec\Piranha.Analyzers.nuspec = nuspec\Piranha.Analyzers.nuspec
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".global", ".global", "{D571F145-B946-4998-80D0-D93B9FBF24E9}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3F3E3590-CB01-4A9C-8628-BC7A23C0B64D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F3E3590-CB01-4A9C-8628-BC7A23C0B64D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F3E3590-CB01-4A9C-8628-BC7A23C0B64D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3F3E3590-CB01-4A9C-8628-BC7A23C0B64D}.Debug|x64.Build.0 = Debug|Any CPU
+		{3F3E3590-CB01-4A9C-8628-BC7A23C0B64D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3F3E3590-CB01-4A9C-8628-BC7A23C0B64D}.Debug|x86.Build.0 = Debug|Any CPU
+		{3F3E3590-CB01-4A9C-8628-BC7A23C0B64D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F3E3590-CB01-4A9C-8628-BC7A23C0B64D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F3E3590-CB01-4A9C-8628-BC7A23C0B64D}.Release|x64.ActiveCfg = Release|Any CPU
+		{3F3E3590-CB01-4A9C-8628-BC7A23C0B64D}.Release|x64.Build.0 = Release|Any CPU
+		{3F3E3590-CB01-4A9C-8628-BC7A23C0B64D}.Release|x86.ActiveCfg = Release|Any CPU
+		{3F3E3590-CB01-4A9C-8628-BC7A23C0B64D}.Release|x86.Build.0 = Release|Any CPU
+		{09015A43-EBE4-4102-A54E-FF58ADF94969}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09015A43-EBE4-4102-A54E-FF58ADF94969}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09015A43-EBE4-4102-A54E-FF58ADF94969}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{09015A43-EBE4-4102-A54E-FF58ADF94969}.Debug|x64.Build.0 = Debug|Any CPU
+		{09015A43-EBE4-4102-A54E-FF58ADF94969}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{09015A43-EBE4-4102-A54E-FF58ADF94969}.Debug|x86.Build.0 = Debug|Any CPU
+		{09015A43-EBE4-4102-A54E-FF58ADF94969}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09015A43-EBE4-4102-A54E-FF58ADF94969}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09015A43-EBE4-4102-A54E-FF58ADF94969}.Release|x64.ActiveCfg = Release|Any CPU
+		{09015A43-EBE4-4102-A54E-FF58ADF94969}.Release|x64.Build.0 = Release|Any CPU
+		{09015A43-EBE4-4102-A54E-FF58ADF94969}.Release|x86.ActiveCfg = Release|Any CPU
+		{09015A43-EBE4-4102-A54E-FF58ADF94969}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3F3E3590-CB01-4A9C-8628-BC7A23C0B64D} = {BD012B1D-F0E1-4029-81BE-04D66BBD5AFE}
+		{09015A43-EBE4-4102-A54E-FF58ADF94969} = {9FA21F26-134E-462C-AA04-2134731A6CFB}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DF23C474-6EF4-409F-9DB2-B3FF38F5BAF2}
+	EndGlobalSection
+EndGlobal
