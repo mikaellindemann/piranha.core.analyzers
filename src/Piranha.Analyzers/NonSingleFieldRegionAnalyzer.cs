@@ -34,6 +34,9 @@ namespace Piranha.Analyzers
 
         public override void Initialize(AnalysisContext context)
         {
+            context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
+            context.EnableConcurrentExecution();
+
             // List of built-in field types that, per documentation, is primarily intended for complex regions.
             context.RegisterSyntaxNodeAction(c => AnalyzeSyntaxNode(c, Constants.Types.PiranhaExtendFieldsAudioField), SyntaxKind.PropertyDeclaration);
             context.RegisterSyntaxNodeAction(c => AnalyzeSyntaxNode(c, Constants.Types.PiranhaExtendFieldsCheckBoxField), SyntaxKind.PropertyDeclaration);
@@ -58,7 +61,7 @@ namespace Piranha.Analyzers
             var fieldTypeSymbol = context.Compilation.GetTypeByMetadataName(fieldName);
             var s = context.SemanticModel.GetTypeInfo(pds.Type, context.CancellationToken);
             
-            if (!s.Type.Equals(fieldTypeSymbol))
+            if (!s.Type.Equals(fieldTypeSymbol, SymbolEqualityComparer.IncludeNullability))
             {
                 return;
             }
@@ -72,7 +75,7 @@ namespace Piranha.Analyzers
                 {
                     var attributeTypeInfo = context.SemanticModel.GetTypeInfo(attribute, context.CancellationToken);
 
-                    if (regionAttributeSymbol.Equals(attributeTypeInfo.ConvertedType))
+                    if (regionAttributeSymbol.Equals(attributeTypeInfo.ConvertedType, SymbolEqualityComparer.IncludeNullability))
                     {
                         context.ReportDiagnostic(Diagnostic.Create(Rule, pds.GetLocation(), fieldName.Split('.').Last()));
                     }
