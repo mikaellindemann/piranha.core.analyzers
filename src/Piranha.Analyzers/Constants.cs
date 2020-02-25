@@ -12,6 +12,11 @@ namespace Piranha.Analyzers
 {
     internal static class Constants
     {
+        internal static class Namespaces
+        {
+            internal const string PiranhaExtendFields = "Piranha.Extend.Fields";
+        }
+
         internal static class Types
         {
             internal const string PiranhaExtendFieldAttribute = "Piranha.Extend.FieldAttribute";

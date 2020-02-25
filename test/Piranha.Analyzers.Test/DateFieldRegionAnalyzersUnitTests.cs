@@ -11,6 +11,8 @@
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CodeFixes;
 using Microsoft.CodeAnalysis.Diagnostics;
+using System;
+using System.Threading.Tasks;
 using TestHelper;
 using Xunit;
 
@@ -19,29 +21,29 @@ namespace Piranha.Analyzers.Test
     public class DateFieldRegionAnalyzersUnitTests : CodeFixVerifier
     {
         [Fact]
-        public void NoDiagnosticIfNoCode()
+        public async Task NoDiagnosticIfNoCode()
         {
             var test = @"";
 
-            VerifyCSharpDiagnostic(test);
+            await VerifyCSharpDiagnosticAsync(test);
         }
 
         [Fact]
-        public void DiagnosticRegionAppliedToDateFieldProperty()
+        public async Task DiagnosticRegionAppliedToDateFieldProperty()
         {
-            var test = @"
-    using Piranha.Extend;
-    using Piranha.Extend.Fields;
-    using Piranha.Models;
-
-    namespace ConsoleApplication1
-    {
-        class TypeName : Post<TypeName>
-        {
-            [Region]
-            public DateField Date { get; set; }
-        }
-    }";
+            var test = string.Join(Environment.NewLine,
+                "using Piranha.Extend;",
+                "using Piranha.Extend.Fields;",
+                "using Piranha.Models;",
+                "",
+                "namespace ConsoleApplication1",
+                "{",
+                "    class TypeName : Post<TypeName>",
+                "    {",
+                "        [Region]",
+                "        public DateField Date { get; set; }",
+                "    }",
+                "}");
             var expected = new DiagnosticResult
             {
                 Id = "PA0001",
@@ -49,37 +51,37 @@ namespace Piranha.Analyzers.Test
                 Severity = DiagnosticSeverity.Warning,
                 Locations =
                     new[] {
-                            new DiagnosticResultLocation("Test0.cs", 10, 13)
+                            new DiagnosticResultLocation("Test0.cs", 9, 9)
                         }
             };
 
-            VerifyCSharpDiagnostic(test, expected);
+            await VerifyCSharpDiagnosticAsync(test, expected);
         }
 
         [Fact]
-        public void NoDiagnosticDateFieldInComplexRegion()
+        public async Task NoDiagnosticDateFieldInComplexRegion()
         {
-            var test = @"
-    using Piranha.Extend;
-    using Piranha.Extend.Fields;
-    using Piranha.Models;
+            var test = string.Join(Environment.NewLine,
+                "using Piranha.Extend;",
+                "using Piranha.Extend.Fields;",
+                "using Piranha.Models;",
+                "",
+                "namespace ConsoleApplication1",
+                "{",
+                "    class TypeName : Post<TypeName>",
+                "    {",
+                "        [Region]",
+                "        public ContentRegion Content { get; set; }",
+                "",
+                "        public class ContentRegion",
+                "        {",
+                "            [Field]",
+                "            public DateField Date { get; set; }",
+                "        }",
+                "    }",
+                "}");
 
-    namespace ConsoleApplication1
-    {
-        class TypeName : Post<TypeName>
-        {
-            [Region]
-            public ContentRegion Content { get; set; }
-
-            public class ContentRegion
-            {
-                [Field]
-                public DateField Date { get; set; }
-            }
-        }
-    }";
-
-            VerifyCSharpDiagnostic(test);
+            await VerifyCSharpDiagnosticAsync(test);
         }
 
         protected override CodeFixProvider GetCSharpCodeFixProvider()

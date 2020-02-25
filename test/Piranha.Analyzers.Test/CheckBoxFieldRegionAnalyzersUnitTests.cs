@@ -7,10 +7,12 @@
  * https://github.com/piranhacms/piranha.core.analyzers
  *
  */
- 
+
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CodeFixes;
 using Microsoft.CodeAnalysis.Diagnostics;
+using System;
+using System.Threading.Tasks;
 using TestHelper;
 using Xunit;
 
@@ -19,29 +21,29 @@ namespace Piranha.Analyzers.Test
     public class CheckBoxFieldRegionAnalyzersUnitTests : CodeFixVerifier
     {
         [Fact]
-        public void NoDiagnosticIfNoCode()
+        public async Task NoDiagnosticIfNoCodeAsync()
         {
             var test = @"";
 
-            VerifyCSharpDiagnostic(test);
+            await VerifyCSharpDiagnosticAsync(test);
         }
 
         [Fact]
-        public void DiagnosticRegionAppliedToCheckBoxFieldProperty()
+        public async Task DiagnosticRegionAppliedToCheckBoxFieldPropertyAsync()
         {
-            var test = @"
-    using Piranha.Extend;
-    using Piranha.Extend.Fields;
-    using Piranha.Models;
-
-    namespace ConsoleApplication1
-    {
-        class TypeName : Post<TypeName>
-        {
-            [Region]
-            public CheckBoxField CheckBox { get; set; }
-        }
-    }";
+            var test = string.Join(Environment.NewLine,
+                "using Piranha.Extend;",
+                "using Piranha.Extend.Fields;",
+                "using Piranha.Models;",
+                "",
+                "namespace ConsoleApplication1",
+                "{",
+                "    class TypeName : Post<TypeName>",
+                "    {",
+                "        [Region]",
+                "        public CheckBoxField CheckBox { get; set; }",
+                "    }",
+                "}");
             var expected = new DiagnosticResult
             {
                 Id = "PA0001",
@@ -49,37 +51,37 @@ namespace Piranha.Analyzers.Test
                 Severity = DiagnosticSeverity.Warning,
                 Locations =
                     new[] {
-                            new DiagnosticResultLocation("Test0.cs", 10, 13)
+                            new DiagnosticResultLocation("Test0.cs", 9, 9)
                         }
             };
 
-            VerifyCSharpDiagnostic(test, expected);
+            await VerifyCSharpDiagnosticAsync(test, expected);
         }
 
         [Fact]
-        public void NoDiagnosticCheckBoxFieldInComplexRegion()
+        public async Task NoDiagnosticCheckBoxFieldInComplexRegion()
         {
-            var test = @"
-    using Piranha.Extend;
-    using Piranha.Extend.Fields;
-    using Piranha.Models;
+            var test = string.Join(Environment.NewLine,
+                "using Piranha.Extend;",
+                "using Piranha.Extend.Fields;",
+                "using Piranha.Models;",
+                "",
+                "namespace ConsoleApplication1",
+                "{",
+                "    class TypeName : Post<TypeName>",
+                "    {",
+                "        [Region]",
+                "        public SettingsRegion Settings { get; set; }",
+                "",
+                "        public class SettingsRegion",
+                "        {",
+                "            [Field]",
+                "            public CheckBoxField CheckBox { get; set; }",
+                "        }",
+                "    }",
+                "}");
 
-    namespace ConsoleApplication1
-    {
-        class TypeName : Post<TypeName>
-        {
-            [Region]
-            public SettingsRegion Settings { get; set; }
-
-            public class SettingsRegion
-            {
-                [Field]
-                public CheckBoxField CheckBox { get; set; }
-            }
-        }
-    }";
-
-            VerifyCSharpDiagnostic(test);
+            await VerifyCSharpDiagnosticAsync(test);
         }
 
         protected override CodeFixProvider GetCSharpCodeFixProvider()

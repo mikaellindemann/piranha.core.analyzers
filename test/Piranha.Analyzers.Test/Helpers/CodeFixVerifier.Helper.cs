@@ -18,6 +18,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace TestHelper
 {
@@ -27,18 +28,25 @@ namespace TestHelper
     /// </summary>
     public abstract partial class CodeFixVerifier : DiagnosticVerifier
     {
-        /// <summary>
-        /// Apply the inputted CodeAction to the inputted document.
-        /// Meant to be used to apply codefixes.
-        /// </summary>
-        /// <param name="document">The Document to apply the fix on</param>
-        /// <param name="codeAction">A CodeAction that will be applied to the Document.</param>
-        /// <returns>A Document with the changes from the CodeAction</returns>
-        private static Document ApplyFix(Document document, CodeAction codeAction)
+        ///// <summary>
+        ///// Apply the inputted CodeAction to the inputted document.
+        ///// Meant to be used to apply codefixes.
+        ///// </summary>
+        ///// <param name="document">The Document to apply the fix on</param>
+        ///// <param name="codeAction">A CodeAction that will be applied to the Document.</param>
+        ///// <returns>A Document with the changes from the CodeAction</returns>
+        //private static Document ApplyFix(Document document, CodeAction codeAction)
+        //{
+        //    var operations = codeAction.GetOperationsAsync(CancellationToken.None).Result;
+        //    var solution = operations.OfType<ApplyChangesOperation>().Single().ChangedSolution;
+        //    return solution.GetDocument(document.Id);
+        //}
+
+        private static async Task<Project> ApplyFixAsync(Project project, CodeAction codeAction, CancellationToken ct = default)
         {
-            var operations = codeAction.GetOperationsAsync(CancellationToken.None).Result;
+            var operations = await codeAction.GetOperationsAsync(ct);
             var solution = operations.OfType<ApplyChangesOperation>().Single().ChangedSolution;
-            return solution.GetDocument(document.Id);
+            return solution.GetProject(project.Id);
         }
 
         /// <summary>
@@ -76,9 +84,10 @@ namespace TestHelper
         /// </summary>
         /// <param name="document">The Document to run the compiler diagnostic analyzers on</param>
         /// <returns>The compiler diagnostics that were found in the code</returns>
-        private static IEnumerable<Diagnostic> GetCompilerDiagnostics(Document document)
+        private static async Task<IEnumerable<Diagnostic>> GetCompilerDiagnosticsAsync(Document document)
         {
-            return document.GetSemanticModelAsync().Result.GetDiagnostics();
+            var semanticModel = await document.GetSemanticModelAsync().ConfigureAwait(false);
+            return semanticModel.GetDiagnostics();
         }
 
         /// <summary>
@@ -86,10 +95,10 @@ namespace TestHelper
         /// </summary>
         /// <param name="document">The Document to be converted to a string</param>
         /// <returns>A string containing the syntax of the Document after formatting</returns>
-        private static string GetStringFromDocument(Document document)
+        private static async Task<string> GetStringFromDocumentAsync(Document document)
         {
-            var simplifiedDoc = Simplifier.ReduceAsync(document, Simplifier.Annotation).Result;
-            var root = simplifiedDoc.GetSyntaxRootAsync().Result;
+            var simplifiedDoc = await Simplifier.ReduceAsync(document, Simplifier.Annotation);
+            var root = await simplifiedDoc.GetSyntaxRootAsync();
             root = Formatter.Format(root, Formatter.Annotation, simplifiedDoc.Project.Solution.Workspace);
 
             return Environment.NewLine switch

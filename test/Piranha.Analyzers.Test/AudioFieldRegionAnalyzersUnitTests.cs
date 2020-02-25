@@ -12,6 +12,7 @@ using System;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CodeFixes;
 using Microsoft.CodeAnalysis.Diagnostics;
+using System.Threading.Tasks;
 using TestHelper;
 using Xunit;
 
@@ -20,30 +21,29 @@ namespace Piranha.Analyzers.Test
     public class AudioFieldRegionAnalyzersUnitTests : CodeFixVerifier
     {
         [Fact]
-        public void NoDiagnosticIfNoCode()
+        public async Task NoDiagnosticIfNoCodeAsync()
         {
             var test = @"";
 
-            VerifyCSharpDiagnostic(test);
+            await VerifyCSharpDiagnosticAsync(test);
         }
 
         [Fact]
-        public void DiagnosticRegionAppliedToAudioFieldProperty()
+        public async Task DiagnosticRegionAppliedToAudioFieldProperty()
         {
-            var test =
-                string.Join(Environment.NewLine,
-                    "using Piranha.Extend;",
-                    "using Piranha.Extend.Fields;",
-                    "using Piranha.Models;",
-                    "",
-                    "namespace ConsoleApplication1",
-                    "{",
-                    "    class TypeName : Post<TypeName>",
-                    "    {",
-                    "        [Region]",
-                    "        public AudioField Audio { get; set; }",
-                    "    }",
-                    "}");
+            var test = string.Join(Environment.NewLine,
+                "using Piranha.Extend;",
+                "using Piranha.Extend.Fields;",
+                "using Piranha.Models;",
+                "",
+                "namespace ConsoleApplication1",
+                "{",
+                "    class TypeName : Post<TypeName>",
+                "    {",
+                "        [Region]",
+                "        public AudioField Audio { get; set; }",
+                "    }",
+                "}");
             var expected = new DiagnosticResult
             {
                 Id = "PA0001",
@@ -55,57 +55,55 @@ namespace Piranha.Analyzers.Test
                         }
             };
 
-            VerifyCSharpDiagnostic(test, expected);
+            await VerifyCSharpDiagnosticAsync(test, expected);
 
-            var expectedFix =
-                string.Join(Environment.NewLine,
-                    "using Piranha.Extend;",
-                    "using Piranha.Extend.Fields;",
-                    "using Piranha.Models;",
-                    "",
-                    "namespace ConsoleApplication1",
-                    "{",
-                    "    class TypeName : Post<TypeName>",
-                    "    {",
-                    "        [Region]",
-                    "        public ComplexRegion MyRegion { get; set; }",
-                    "",
-                    "        public class ComplexRegion",
-                    "        {",
-                    "            [Field]",
-                    "            public AudioField Audio { get; set; }",
-                    "        }",
-                    "    }",
-                    "}");
+            var expectedFix = string.Join(Environment.NewLine,
+                "using Piranha.Extend;",
+                "using Piranha.Extend.Fields;",
+                "using Piranha.Models;",
+                "",
+                "namespace ConsoleApplication1",
+                "{",
+                "    class TypeName : Post<TypeName>",
+                "    {",
+                "        [Region]",
+                "        public ComplexRegion MyRegion { get; set; }",
+                "",
+                "        public class ComplexRegion",
+                "        {",
+                "            [Field]",
+                "            public AudioField Audio { get; set; }",
+                "        }",
+                "    }",
+                "}");
 
-            VerifyCSharpFix(test, expectedFix);
+            await VerifyCSharpFixAsync(test, expectedFix);
         }
 
 
         [Fact]
-        public void DiagnosticRegionAppliedToAudioFieldPropertyWithExistingComplexRegion()
+        public async Task DiagnosticRegionAppliedToAudioFieldPropertyWithExistingComplexRegion()
         {
-            var test =
-                string.Join(Environment.NewLine,
-                    "using Piranha.Extend;",
-                    "using Piranha.Extend.Fields;",
-                    "using Piranha.Models;",
-                    "",
-                    "namespace ConsoleApplication1",
-                    "{",
-                    "    class TypeName : Post<TypeName>",
-                    "    {",
-                    "        [Region]",
-                    "        public AudioField Audio { get; set; }",
-                    "",
-                    "        [Region]",
-                    "        public ComplexRegion Region { get; set; }",
-                    "",
-                    "        public class ComplexRegion",
-                    "        {",
-                    "        }",
-                    "    }",
-                    "}");
+            var test = string.Join(Environment.NewLine,
+                "using Piranha.Extend;",
+                "using Piranha.Extend.Fields;",
+                "using Piranha.Models;",
+                "",
+                "namespace ConsoleApplication1",
+                "{",
+                "    class TypeName : Post<TypeName>",
+                "    {",
+                "        [Region]",
+                "        public AudioField Audio { get; set; }",
+                "",
+                "        [Region]",
+                "        public ComplexRegion Region { get; set; }",
+                "",
+                "        public class ComplexRegion",
+                "        {",
+                "        }",
+                "    }",
+                "}");
             var expected = new DiagnosticResult
             {
                 Id = "PA0001",
@@ -117,64 +115,62 @@ namespace Piranha.Analyzers.Test
                         }
             };
 
-            VerifyCSharpDiagnostic(test, expected);
+            await VerifyCSharpDiagnosticAsync(test, expected);
 
-            var expectedFix =
-                string.Join(Environment.NewLine,
-                    "using Piranha.Extend;",
-                    "using Piranha.Extend.Fields;",
-                    "using Piranha.Models;",
-                    "",
-                    "namespace ConsoleApplication1",
-                    "{",
-                    "    class TypeName : Post<TypeName>",
-                    "    {",
-                    "        [Region]",
-                    "        public ComplexRegion1 MyRegion { get; set; }",
-                    "",
-                    "        [Region]",
-                    "        public ComplexRegion Region { get; set; }",
-                    "",
-                    "        public class ComplexRegion",
-                    "        {",
-                    "        }",
-                    "",
-                    "        public class ComplexRegion1",
-                    "        {",
-                    "            [Field]",
-                    "            public AudioField Audio { get; set; }",
-                    "        }",
-                    "    }",
-                    "}");
+            var expectedFix = string.Join(Environment.NewLine,
+                "using Piranha.Extend;",
+                "using Piranha.Extend.Fields;",
+                "using Piranha.Models;",
+                "",
+                "namespace ConsoleApplication1",
+                "{",
+                "    class TypeName : Post<TypeName>",
+                "    {",
+                "        [Region]",
+                "        public ComplexRegion1 MyRegion { get; set; }",
+                "",
+                "        [Region]",
+                "        public ComplexRegion Region { get; set; }",
+                "",
+                "        public class ComplexRegion",
+                "        {",
+                "        }",
+                "",
+                "        public class ComplexRegion1",
+                "        {",
+                "            [Field]",
+                "            public AudioField Audio { get; set; }",
+                "        }",
+                "    }",
+                "}");
 
-            VerifyCSharpFix(test, expectedFix);
+            await VerifyCSharpFixAsync(test, expectedFix);
         }
 
         [Fact]
-        public void NoDiagnosticAudioFieldInComplexRegion()
+        public async Task NoDiagnosticAudioFieldInComplexRegionAsync()
         {
-            var test =
-                string.Join(Environment.NewLine,
-                    "using Piranha.Extend;",
-                    "using Piranha.Extend.Fields;",
-                    "using Piranha.Models;",
-                    "",
-                    "namespace ConsoleApplication1",
-                    "{",
-                    "    class TypeName : Post<TypeName>",
-                    "    {",
-                    "        [Region]",
-                    "        public ContentRegion Content { get; set; }",
-                    "",
-                    "        public class ContentRegion",
-                    "        {",
-                    "            [Field]",
-                    "            public AudioField Audio { get; set; }",
-                    "        }",
-                    "    }",
-                    "}");
+            var test = string.Join(Environment.NewLine,
+                "using Piranha.Extend;",
+                "using Piranha.Extend.Fields;",
+                "using Piranha.Models;",
+                "",
+                "namespace ConsoleApplication1",
+                "{",
+                "    class TypeName : Post<TypeName>",
+                "    {",
+                "        [Region]",
+                "        public ContentRegion Content { get; set; }",
+                "",
+                "        public class ContentRegion",
+                "        {",
+                "            [Field]",
+                "            public AudioField Audio { get; set; }",
+                "        }",
+                "    }",
+                "}");
 
-            VerifyCSharpDiagnostic(test);
+            await VerifyCSharpDiagnosticAsync(test);
         }
 
         protected override CodeFixProvider GetCSharpCodeFixProvider()
