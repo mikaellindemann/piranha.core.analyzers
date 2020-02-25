@@ -8,6 +8,7 @@
  *
  */
 
+using System;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CodeFixes;
 using Microsoft.CodeAnalysis.Diagnostics;
@@ -29,19 +30,20 @@ namespace Piranha.Analyzers.Test
         [Fact]
         public void DiagnosticRegionAppliedToAudioFieldProperty()
         {
-            var test = @"
-using Piranha.Extend;
-using Piranha.Extend.Fields;
-using Piranha.Models;
-
-namespace ConsoleApplication1
-{
-    class TypeName : Post<TypeName>
-    {
-        [Region]
-        public AudioField Audio { get; set; }
-    }
-}";
+            var test =
+                string.Join(Environment.NewLine,
+                    "using Piranha.Extend;",
+                    "using Piranha.Extend.Fields;",
+                    "using Piranha.Models;",
+                    "",
+                    "namespace ConsoleApplication1",
+                    "{",
+                    "    class TypeName : Post<TypeName>",
+                    "    {",
+                    "        [Region]",
+                    "        public AudioField Audio { get; set; }",
+                    "    }",
+                    "}");
             var expected = new DiagnosticResult
             {
                 Id = "PA0001",
@@ -49,31 +51,32 @@ namespace ConsoleApplication1
                 Severity = DiagnosticSeverity.Warning,
                 Locations =
                     new[] {
-                            new DiagnosticResultLocation("Test0.cs", 10, 9)
+                            new DiagnosticResultLocation("Test0.cs", 9, 9)
                         }
             };
 
             VerifyCSharpDiagnostic(test, expected);
 
-            var expectedFix = @"
-using Piranha.Extend;
-using Piranha.Extend.Fields;
-using Piranha.Models;
-
-namespace ConsoleApplication1
-{
-    class TypeName : Post<TypeName>
-    {
-        [Region]
-        public ComplexRegion MyRegion { get; set; }
-
-        public class ComplexRegion
-        {
-            [Field]
-            public AudioField Audio { get; set; }
-        }
-    }
-}";
+            var expectedFix =
+                string.Join(Environment.NewLine,
+                    "using Piranha.Extend;",
+                    "using Piranha.Extend.Fields;",
+                    "using Piranha.Models;",
+                    "",
+                    "namespace ConsoleApplication1",
+                    "{",
+                    "    class TypeName : Post<TypeName>",
+                    "    {",
+                    "        [Region]",
+                    "        public ComplexRegion MyRegion { get; set; }",
+                    "",
+                    "        public class ComplexRegion",
+                    "        {",
+                    "            [Field]",
+                    "            public AudioField Audio { get; set; }",
+                    "        }",
+                    "    }",
+                    "}");
 
             VerifyCSharpFix(test, expectedFix);
         }
@@ -82,26 +85,27 @@ namespace ConsoleApplication1
         [Fact]
         public void DiagnosticRegionAppliedToAudioFieldPropertyWithExistingComplexRegion()
         {
-            var test = @"
-using Piranha.Extend;
-using Piranha.Extend.Fields;
-using Piranha.Models;
-
-namespace ConsoleApplication1
-{
-    class TypeName : Post<TypeName>
-    {
-        [Region]
-        public AudioField Audio { get; set; }
-
-        [Region]
-        public ComplexRegion Region { get; set; }
-
-        public class ComplexRegion
-        {
-        }
-    }
-}";
+            var test =
+                string.Join(Environment.NewLine,
+                    "using Piranha.Extend;",
+                    "using Piranha.Extend.Fields;",
+                    "using Piranha.Models;",
+                    "",
+                    "namespace ConsoleApplication1",
+                    "{",
+                    "    class TypeName : Post<TypeName>",
+                    "    {",
+                    "        [Region]",
+                    "        public AudioField Audio { get; set; }",
+                    "",
+                    "        [Region]",
+                    "        public ComplexRegion Region { get; set; }",
+                    "",
+                    "        public class ComplexRegion",
+                    "        {",
+                    "        }",
+                    "    }",
+                    "}");
             var expected = new DiagnosticResult
             {
                 Id = "PA0001",
@@ -109,38 +113,39 @@ namespace ConsoleApplication1
                 Severity = DiagnosticSeverity.Warning,
                 Locations =
                     new[] {
-                            new DiagnosticResultLocation("Test0.cs", 10, 9)
+                            new DiagnosticResultLocation("Test0.cs", 9, 9)
                         }
             };
 
             VerifyCSharpDiagnostic(test, expected);
 
-            var expectedFix = @"
-using Piranha.Extend;
-using Piranha.Extend.Fields;
-using Piranha.Models;
-
-namespace ConsoleApplication1
-{
-    class TypeName : Post<TypeName>
-    {
-        [Region]
-        public ComplexRegion1 MyRegion { get; set; }
-
-        [Region]
-        public ComplexRegion Region { get; set; }
-
-        public class ComplexRegion
-        {
-        }
-
-        public class ComplexRegion1
-        {
-            [Field]
-            public AudioField Audio { get; set; }
-        }
-    }
-}";
+            var expectedFix =
+                string.Join(Environment.NewLine,
+                    "using Piranha.Extend;",
+                    "using Piranha.Extend.Fields;",
+                    "using Piranha.Models;",
+                    "",
+                    "namespace ConsoleApplication1",
+                    "{",
+                    "    class TypeName : Post<TypeName>",
+                    "    {",
+                    "        [Region]",
+                    "        public ComplexRegion1 MyRegion { get; set; }",
+                    "",
+                    "        [Region]",
+                    "        public ComplexRegion Region { get; set; }",
+                    "",
+                    "        public class ComplexRegion",
+                    "        {",
+                    "        }",
+                    "",
+                    "        public class ComplexRegion1",
+                    "        {",
+                    "            [Field]",
+                    "            public AudioField Audio { get; set; }",
+                    "        }",
+                    "    }",
+                    "}");
 
             VerifyCSharpFix(test, expectedFix);
         }
@@ -148,25 +153,26 @@ namespace ConsoleApplication1
         [Fact]
         public void NoDiagnosticAudioFieldInComplexRegion()
         {
-            var test = @"
-    using Piranha.Extend;
-    using Piranha.Extend.Fields;
-    using Piranha.Models;
-
-    namespace ConsoleApplication1
-    {
-        class TypeName : Post<TypeName>
-        {
-            [Region]
-            public ContentRegion Content { get; set; }
-
-            public class ContentRegion
-            {
-                [Field]
-                public AudioField Audio { get; set; }
-            }
-        }
-    }";
+            var test =
+                string.Join(Environment.NewLine,
+                    "using Piranha.Extend;",
+                    "using Piranha.Extend.Fields;",
+                    "using Piranha.Models;",
+                    "",
+                    "namespace ConsoleApplication1",
+                    "{",
+                    "    class TypeName : Post<TypeName>",
+                    "    {",
+                    "        [Region]",
+                    "        public ContentRegion Content { get; set; }",
+                    "",
+                    "        public class ContentRegion",
+                    "        {",
+                    "            [Field]",
+                    "            public AudioField Audio { get; set; }",
+                    "        }",
+                    "    }",
+                    "}");
 
             VerifyCSharpDiagnostic(test);
         }
