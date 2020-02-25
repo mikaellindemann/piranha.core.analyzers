@@ -16,6 +16,7 @@ using Microsoft.CodeAnalysis.Simplification;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading;
 
 namespace TestHelper
@@ -90,7 +91,12 @@ namespace TestHelper
             var simplifiedDoc = Simplifier.ReduceAsync(document, Simplifier.Annotation).Result;
             var root = simplifiedDoc.GetSyntaxRootAsync().Result;
             root = Formatter.Format(root, Formatter.Annotation, simplifiedDoc.Project.Solution.Workspace);
-            return root.GetText().ToString().Replace("\r\n", Environment.NewLine).Replace("\n", Environment.NewLine);
+
+            return Environment.NewLine switch
+            {
+                "\r\n" => Regex.Replace(root.GetText().ToString(), "[^\r]\n", Environment.NewLine),
+                _ => root.GetText().ToString().Replace("\r\n", Environment.NewLine),
+            };
         }
     }
 }
