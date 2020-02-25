@@ -13,8 +13,6 @@ using Microsoft.CodeAnalysis.CodeActions;
 using Microsoft.CodeAnalysis.CodeFixes;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.CodeAnalysis.Formatting;
-using Microsoft.CodeAnalysis.Simplification;
 using System.Collections.Immutable;
 using System.Composition;
 using System.Linq;
@@ -24,7 +22,7 @@ using System.Threading.Tasks;
 namespace Piranha.Analyzers
 {
     [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(IntroduceComplexRegionCodeFixProvider)), Shared]
-    public class IntroduceComplexRegionCodeFixProvider : CodeFixProvider
+    public class IntroduceComplexRegionCodeFixProvider : ComplexRegionCodeFixProviderBase
     {
         public override ImmutableArray<string> FixableDiagnosticIds => ImmutableArray.Create(NonSingleFieldRegionAnalyzer.DiagnosticId);
         public override FixAllProvider GetFixAllProvider() => WellKnownFixAllProviders.BatchFixer;
@@ -52,7 +50,7 @@ namespace Piranha.Analyzers
                     // Create complex region with the faulty region as a field.
                     var complexRegionClass = CreateComplexRegionClass(
                         complexRegionName,
-                        CreateAutoPropertyWithAttributes(faultyProperty.Type, faultyProperty.Identifier.ValueText, attributeNames: Constants.Types.PiranhaExtendFieldAttribute)
+                        CreateAutoPropertyWithAttributes(faultyProperty.Type, faultyProperty.Identifier.ValueText, attributeNames: Constants.Types.PiranhaExtendFieldAttribute).WithLeadingTrivia(faultyProperty.GetLeadingTrivia()).WithTrailingTrivia(faultyProperty.GetTrailingTrivia())
                     );
 
                     // Create a new region property of the new complex region type.
@@ -92,29 +90,6 @@ namespace Piranha.Analyzers
 
             // Give up on finding a class name.
             return null;
-        }
-
-        private static PropertyDeclarationSyntax CreateAutoPropertyWithAttributes(TypeSyntax type, string name, params string[] attributeNames)
-        {
-            return SyntaxFactory
-                        .PropertyDeclaration(type, name)
-                        .AddModifiers(SyntaxFactory.Token(SyntaxKind.PublicKeyword))
-                        .AddAccessorListAccessors(
-                            SyntaxFactory.AccessorDeclaration(SyntaxKind.GetAccessorDeclaration).WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken)),
-                            SyntaxFactory.AccessorDeclaration(SyntaxKind.SetAccessorDeclaration).WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken))
-                        )
-                        .AddAttributeLists(SyntaxFactory.AttributeList(new SeparatedSyntaxList<AttributeSyntax>().AddRange(attributeNames.Select(attr => SyntaxFactory.Attribute(SyntaxFactory.ParseName(attr))))))
-                        .WithAdditionalAnnotations(Formatter.Annotation, Simplifier.Annotation);
-        }
-
-        private static ClassDeclarationSyntax CreateComplexRegionClass(string name, params PropertyDeclarationSyntax[] fields)
-        {
-            var complexRegionClass = SyntaxFactory.ClassDeclaration(name)
-                        .AddModifiers(SyntaxFactory.Token(SyntaxKind.PublicKeyword))
-                        .AddMembers(fields)
-                        .WithAdditionalAnnotations(Formatter.Annotation, Simplifier.Annotation);
-
-            return complexRegionClass;
         }
     }
 }
