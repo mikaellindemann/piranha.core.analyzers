@@ -1,0 +1,21 @@
+version: 8.0.2.{build}
+branches:
+  only:
+  - master
+skip_tags: true
+max_jobs: 1
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj'
+  version: '{version}'
+  version_prefix: '{version}'
+  package_version: '{version}'
+  assembly_version: '{version}'
+  file_version: '{version}'
+  informational_version: '{version}'
+build_script:
+- cmd: dotnet build -c Release
+test_script:
+- cmd: dotnet test
+artifacts:
+- path: '**/*.nupkg'
