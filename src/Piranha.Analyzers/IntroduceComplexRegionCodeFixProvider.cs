@@ -21,7 +21,8 @@ using System.Threading.Tasks;
 
 namespace Piranha.Analyzers
 {
-    [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(IntroduceComplexRegionCodeFixProvider)), Shared]
+    // Disabled as it suggests a codefix that generates code that violates PA0002.
+    // [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(IntroduceComplexRegionCodeFixProvider)), Shared]
     public class IntroduceComplexRegionCodeFixProvider : ComplexRegionCodeFixProviderBase
     {
         public override ImmutableArray<string> FixableDiagnosticIds => ImmutableArray.Create(NonSingleFieldRegionAnalyzer.DiagnosticId);

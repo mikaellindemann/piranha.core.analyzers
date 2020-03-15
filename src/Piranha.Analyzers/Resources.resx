@@ -129,4 +129,16 @@
     <value>Field type is primarily intended to be used in complex regions</value>
     <comment>The title of the diagnostic.</comment>
   </data>
+  <data name="InvalidSingleFieldComplexRegionAnalyzerDescription" xml:space="preserve">
+    <value>Complex regions with only one field is not supported.</value>
+    <comment>An optional longer localizable description of the diagnostic.</comment>
+  </data>
+  <data name="InvalidSingleFieldComplexRegionAnalyzerMessageFormat" xml:space="preserve">
+    <value>Piranha does not have support for single field complex regions. Use a single field region instead.</value>
+    <comment>The format-able message the diagnostic displays.</comment>
+  </data>
+  <data name="InvalidSingleFieldComplexRegionAnalyzerTitle" xml:space="preserve">
+    <value>Complex regions with only one field is not supported.</value>
+    <comment>The title of the diagnostic.</comment>
+  </data>
 </root>

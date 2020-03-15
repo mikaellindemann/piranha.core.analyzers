@@ -86,5 +86,23 @@ namespace Piranha.Analyzers {
                 return ResourceManager.GetString("NonSingleFieldRegionAnalyzerTitle", resourceCulture);
             }
         }
+
+        internal static string InvalidSingleFieldComplexRegionAnalyzerDescription {
+            get {
+                return ResourceManager.GetString("InvalidSingleFieldComplexRegionAnalyzerDescription", resourceCulture);
+            }
+        }
+
+        internal static string InvalidSingleFieldComplexRegionAnalyzerMessageFormat {
+            get {
+                return ResourceManager.GetString("InvalidSingleFieldComplexRegionAnalyzerMessageFormat", resourceCulture);
+            }
+        }
+
+        internal static string InvalidSingleFieldComplexRegionAnalyzerTitle {
+            get {
+                return ResourceManager.GetString("InvalidSingleFieldComplexRegionAnalyzerTitle", resourceCulture);
+            }
+        }
     }
 }
