@@ -61,6 +61,33 @@ namespace Piranha.Analyzers {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Complex regions with only one field is not supported..
+        /// </summary>
+        internal static string InvalidSingleFieldComplexRegionAnalyzerDescription {
+            get {
+                return ResourceManager.GetString("InvalidSingleFieldComplexRegionAnalyzerDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Piranha does not support single field complex regions. Use a single field region instead..
+        /// </summary>
+        internal static string InvalidSingleFieldComplexRegionAnalyzerMessageFormat {
+            get {
+                return ResourceManager.GetString("InvalidSingleFieldComplexRegionAnalyzerMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Complex regions with only one field is not supported..
+        /// </summary>
+        internal static string InvalidSingleFieldComplexRegionAnalyzerTitle {
+            get {
+                return ResourceManager.GetString("InvalidSingleFieldComplexRegionAnalyzerTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Usage of field type as a single field region might not be supported.
         /// </summary>
         internal static string NonSingleFieldRegionAnalyzerDescription {
@@ -84,24 +111,6 @@ namespace Piranha.Analyzers {
         internal static string NonSingleFieldRegionAnalyzerTitle {
             get {
                 return ResourceManager.GetString("NonSingleFieldRegionAnalyzerTitle", resourceCulture);
-            }
-        }
-
-        internal static string InvalidSingleFieldComplexRegionAnalyzerDescription {
-            get {
-                return ResourceManager.GetString("InvalidSingleFieldComplexRegionAnalyzerDescription", resourceCulture);
-            }
-        }
-
-        internal static string InvalidSingleFieldComplexRegionAnalyzerMessageFormat {
-            get {
-                return ResourceManager.GetString("InvalidSingleFieldComplexRegionAnalyzerMessageFormat", resourceCulture);
-            }
-        }
-
-        internal static string InvalidSingleFieldComplexRegionAnalyzerTitle {
-            get {
-                return ResourceManager.GetString("InvalidSingleFieldComplexRegionAnalyzerTitle", resourceCulture);
             }
         }
     }

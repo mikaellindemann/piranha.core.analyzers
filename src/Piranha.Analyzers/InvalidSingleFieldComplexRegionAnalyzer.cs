@@ -1,3 +1,13 @@
+/*
+ * Copyright (c) 2020 Mikael Lindemann
+ *
+ * This software may be modified and distributed under the terms
+ * of the MIT license.  See the LICENSE file for details.
+ *
+ * https://github.com/piranhacms/piranha.core.analyzers
+ *
+ */
+
 using System.Collections.Immutable;
 using System.Linq;
 using Microsoft.CodeAnalysis;
@@ -65,25 +75,29 @@ namespace Piranha.Analyzers
                 return;
             }
 
-            var reference = references.First();
-
-            var node = reference.GetSyntax(context.CancellationToken);
-
-            if (!(node is ClassDeclarationSyntax @class))
-            {
-                return;
-            }
-
+            var fieldCount = 0;
             var fieldAttributeType = context.Compilation.GetTypeByMetadataName(Constants.Types.PiranhaExtendFieldAttribute);
 
-            var fieldProperties = @class.Members
-                .OfType<PropertyDeclarationSyntax>()
-                .Where(p => p.AttributeLists
-                    .Any(al => al.Attributes
-                        .Any(a => fieldAttributeType.Equals(context.SemanticModel.GetTypeInfo(a, context.CancellationToken).Type, SymbolEqualityComparer.IncludeNullability))))
-                .ToImmutableArray();
+            foreach (var reference in references)
+            {
+                var node = reference.GetSyntax(context.CancellationToken);
 
-            if (fieldProperties.Length == 1)
+                if (!(node is ClassDeclarationSyntax @class))
+                {
+                    return;
+                }
+
+                var referenceSemanticModel = context.Compilation.GetSemanticModel(node.SyntaxTree);
+
+                // Counts properties marked with FieldAttribute.
+                fieldCount += @class.Members
+                    .OfType<PropertyDeclarationSyntax>()
+                    .Count(p => p.AttributeLists
+                        .Any(al => al.Attributes
+                            .Any(a => fieldAttributeType.Equals(referenceSemanticModel.GetTypeInfo(a, context.CancellationToken).Type, SymbolEqualityComparer.IncludeNullability))));
+            }
+
+            if (fieldCount == 1)
             {
                 context.ReportDiagnostic(Diagnostic.Create(Rule, property.GetLocation()));
             }
