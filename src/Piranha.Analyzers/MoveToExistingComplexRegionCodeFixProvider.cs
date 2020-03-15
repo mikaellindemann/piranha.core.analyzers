@@ -59,8 +59,14 @@ namespace Piranha.Analyzers
                 changedRoot
             ), context.Document.Id, context.CancellationToken).ConfigureAwait(false);
 
+            // Refetch content class and semantic model from changed solution.
+            var changedDocument = changedSolution.GetDocument(context.Document.Id);
+            changedRoot = (CompilationUnitSyntax)await changedDocument.GetSyntaxRootAsync().ConfigureAwait(false);
+            contentClassWithoutFaultyProperty = changedRoot.DescendantNodesAndSelf().OfType<ClassDeclarationSyntax>().Single(c => c.Identifier.ValueText == contentClassWithoutFaultyProperty.Identifier.ValueText);
+            semanticModel = await changedSolution.GetDocument(context.Document.Id).GetSemanticModelAsync().ConfigureAwait(false);
+
             // Find other region properties on the class.
-            var regionProperties = contentClass.Members
+            var regionProperties = contentClassWithoutFaultyProperty.Members
                 .Where(m => m != faultyProperty)
                 .OfType<PropertyDeclarationSyntax>()
                 .Where(m => m.AttributeLists.Any(l => l.Attributes.Any(a => regionAttribute.Equals(semanticModel.GetTypeInfo(a).ConvertedType, SymbolEqualityComparer.IncludeNullability))));
@@ -87,7 +93,7 @@ namespace Piranha.Analyzers
                     $"Move {faultyProperty.Identifier.ValueText} to {regionProperty.Type}...",
                     async ct =>
                     {
-                        var regionDocument = context.Document.Project.Solution.GetDocument(node.SyntaxTree);
+                        var regionDocument = changedSolution.GetDocument(node.SyntaxTree);
                         var regionDocumentRoot = (CompilationUnitSyntax)await regionDocument.GetSyntaxRootAsync(ct);
 
                         var newRoot = regionDocumentRoot.ReplaceNode(node, regionClassDeclaration.AddMembers(newFieldProperty))
