@@ -48,7 +48,7 @@ namespace Piranha.Analyzers.Test
             {
                 Id = "PA0001",
                 Message = "AudioField should not be used as a single field region",
-                Severity = DiagnosticSeverity.Warning,
+                Severity = DiagnosticSeverity.Info,
                 Locations =
                     new[] {
                             new DiagnosticResultLocation("Test0.cs", 9, 9)
@@ -108,7 +108,7 @@ namespace Piranha.Analyzers.Test
             {
                 Id = "PA0001",
                 Message = "AudioField should not be used as a single field region",
-                Severity = DiagnosticSeverity.Warning,
+                Severity = DiagnosticSeverity.Info,
                 Locations =
                     new[] {
                             new DiagnosticResultLocation("Test0.cs", 9, 9)
