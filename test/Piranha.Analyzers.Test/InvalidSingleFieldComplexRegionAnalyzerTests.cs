@@ -44,7 +44,7 @@ namespace Piranha.Analyzers.Test
             var expected = new DiagnosticResult
             {
                 Id = "PA0002",
-                Message = "Piranha does not have support for single field complex regions. Use a single field region instead.",
+                Message = "Piranha does not support single field complex regions. Use a single field region instead.",
                 Severity = DiagnosticSeverity.Error,
                 Locations = new[]
                 {
@@ -87,7 +87,7 @@ namespace Piranha.Analyzers.Test
             var expected = new DiagnosticResult
             {
                 Id = "PA0002",
-                Message = "Piranha does not have support for single field complex regions. Use a single field region instead.",
+                Message = "Piranha does not support single field complex regions. Use a single field region instead.",
                 Severity = DiagnosticSeverity.Error,
                 Locations = new[]
                 {
