@@ -12,11 +12,13 @@
     <tags>cms mvc aspnetcore netstandard</tags>
     <license type="expression">MIT</license>
     <projectUrl>https://github.com/piranhacms/piranha.core.analyzers</projectUrl>
+    <icon>images\piranha.png</icon>
     <iconUrl>http://piranhacms.org/assets/twitter-shield.png</iconUrl>
     <developmentDependency>true</developmentDependency>
     <releaseNotes></releaseNotes>
   </metadata>
   <files>
+    <file src="piranha.png" target="images\" />
     <file src="..\src\Piranha.Analyzers\bin\Release\netstandard2.0\Piranha.Analyzers.dll" target="analyzers\dotnet\cs" />
     <file src="..\src\Piranha.Analyzers\tools\*.ps1" target="tools\" />
   </files>
