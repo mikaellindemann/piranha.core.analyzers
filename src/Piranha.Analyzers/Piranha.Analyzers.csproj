@@ -8,7 +8,7 @@
     <Company>Piranha CMS</Company>
     <AssemblyTitle>Piranha.Analyzers</AssemblyTitle>
     <NuspecFile>../../nuspec/Piranha.Analyzers.nuspec</NuspecFile>
-    <NuspecProperties>version=$(Version)</NuspecProperties>
+    <NuspecProperties>version=$(Version);configuration=$(Configuration)</NuspecProperties>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="2.9.8" PrivateAssets="all" />
