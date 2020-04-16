@@ -19,7 +19,7 @@
   </metadata>
   <files>
     <file src="piranha.png" target="images\" />
-    <file src="..\src\Piranha.Analyzers\bin\Release\netstandard2.0\Piranha.Analyzers.dll" target="analyzers\dotnet\cs" />
+    <file src="..\src\Piranha.Analyzers\bin\$configuration$\netstandard2.0\Piranha.Analyzers.dll" target="analyzers\dotnet\cs" />
     <file src="..\src\Piranha.Analyzers\tools\*.ps1" target="tools\" />
   </files>
 </package>
