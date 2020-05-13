@@ -115,6 +115,33 @@ namespace Piranha.Analyzers {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to [PageType] should only be applied to classes inheriting Page..
+        /// </summary>
+        internal static string PageTypeAttributeOnlyForClassesInheritingPageAnalyzerDescription {
+            get {
+                return ResourceManager.GetString("PageTypeAttributeOnlyForClassesInheritingPageAnalyzerDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} does not extend Page, but is marked with [PageType].
+        /// </summary>
+        internal static string PageTypeAttributeOnlyForClassesInheritingPageAnalyzerMessageFormat {
+            get {
+                return ResourceManager.GetString("PageTypeAttributeOnlyForClassesInheritingPageAnalyzerMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [PageType] should only be applied to classes inheriting Page..
+        /// </summary>
+        internal static string PageTypeAttributeOnlyForClassesInheritingPageAnalyzerTitle {
+            get {
+                return ResourceManager.GetString("PageTypeAttributeOnlyForClassesInheritingPageAnalyzerTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to [PostType] should only be applied to classes inheriting Post..
         /// </summary>
         internal static string PostTypeAttributeOnlyForClassesInheritingPostAnalyzerDescription {

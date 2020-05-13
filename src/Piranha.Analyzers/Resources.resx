@@ -150,4 +150,13 @@
   <data name="PostTypeAttributeOnlyForClassesInheritingPostAnalyzerTitle" xml:space="preserve">
     <value>[PostType] should only be applied to classes inheriting Post.</value>
   </data>
+  <data name="PageTypeAttributeOnlyForClassesInheritingPageAnalyzerDescription" xml:space="preserve">
+    <value>[PageType] should only be applied to classes inheriting Page.</value>
+  </data>
+  <data name="PageTypeAttributeOnlyForClassesInheritingPageAnalyzerMessageFormat" xml:space="preserve">
+    <value>{0} does not extend Page, but is marked with [PageType]</value>
+  </data>
+  <data name="PageTypeAttributeOnlyForClassesInheritingPageAnalyzerTitle" xml:space="preserve">
+    <value>[PageType] should only be applied to classes inheriting Page.</value>
+  </data>
 </root>

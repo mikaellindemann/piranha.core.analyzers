@@ -19,6 +19,7 @@ namespace Piranha.Analyzers
 
         internal static class Types
         {
+            internal const string PiranhaAttributeBuilderPageTypeAttribute = "Piranha.AttributeBuilder.PageTypeAttribute";
             internal const string PiranhaAttributeBuilderPostTypeAttribute = "Piranha.AttributeBuilder.PostTypeAttribute";
 
             internal const string PiranhaExtendFieldAttribute = "Piranha.Extend.FieldAttribute";
@@ -36,6 +37,7 @@ namespace Piranha.Analyzers
             internal const string PiranhaExtendFieldsStringField = "Piranha.Extend.Fields.StringField";
             internal const string PiranhaExtendFieldsVideoField = "Piranha.Extend.Fields.VideoField";
 
+            internal const string PiranhaModelsPage = "Piranha.Models.Page";
             internal const string PiranhaModelsPost = "Piranha.Models.Post";
         }
     }
