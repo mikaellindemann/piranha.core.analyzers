@@ -1,12 +1,20 @@
-﻿using Microsoft.CodeAnalysis;
+﻿/*
+ * Copyright (c) 2020 Mikael Lindemann
+ *
+ * This software may be modified and distributed under the terms
+ * of the MIT license.  See the LICENSE file for details.
+ *
+ * https://github.com/piranhacms/piranha.core.analyzers
+ *
+ */
+
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using System;
-using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using System.Text;
 
 namespace Piranha.Analyzers
 {
