@@ -113,5 +113,32 @@ namespace Piranha.Analyzers {
                 return ResourceManager.GetString("NonSingleFieldRegionAnalyzerTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [PostType] should only be applied to classes inheriting Post..
+        /// </summary>
+        internal static string PostTypeAttributeOnlyForClassesInheritingPostAnalyzerDescription {
+            get {
+                return ResourceManager.GetString("PostTypeAttributeOnlyForClassesInheritingPostAnalyzerDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} does not extend Post, but is marked with [PostType].
+        /// </summary>
+        internal static string PostTypeAttributeOnlyForClassesInheritingPostAnalyzerMessageFormat {
+            get {
+                return ResourceManager.GetString("PostTypeAttributeOnlyForClassesInheritingPostAnalyzerMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [PostType] should only be applied to classes inheriting Post..
+        /// </summary>
+        internal static string PostTypeAttributeOnlyForClassesInheritingPostAnalyzerTitle {
+            get {
+                return ResourceManager.GetString("PostTypeAttributeOnlyForClassesInheritingPostAnalyzerTitle", resourceCulture);
+            }
+        }
     }
 }

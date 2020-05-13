@@ -141,4 +141,13 @@
     <value>Complex regions with only one field is not supported.</value>
     <comment>The title of the diagnostic.</comment>
   </data>
+  <data name="PostTypeAttributeOnlyForClassesInheritingPostAnalyzerDescription" xml:space="preserve">
+    <value>[PostType] should only be applied to classes inheriting Post.</value>
+  </data>
+  <data name="PostTypeAttributeOnlyForClassesInheritingPostAnalyzerMessageFormat" xml:space="preserve">
+    <value>{0} does not extend Post, but is marked with [PostType]</value>
+  </data>
+  <data name="PostTypeAttributeOnlyForClassesInheritingPostAnalyzerTitle" xml:space="preserve">
+    <value>[PostType] should only be applied to classes inheriting Post.</value>
+  </data>
 </root>
