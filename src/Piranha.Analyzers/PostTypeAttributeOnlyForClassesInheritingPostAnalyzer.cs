@@ -76,6 +76,8 @@ namespace Piranha.Analyzers
                 return;
             }
 
+            var unboundPostType = postType.ConstructUnboundGenericType();
+
             if (@class.BaseList != null && @class.BaseList.Types.Count != 0)
             {
                 foreach (var type in @class.BaseList.Types)
@@ -85,7 +87,7 @@ namespace Piranha.Analyzers
                         continue;
                     }
 
-                    if (InheritsPost(context, convertedType))
+                    if (InheritsPost(convertedType, postType, unboundPostType))
                     {
                         return;
                     }
@@ -95,24 +97,22 @@ namespace Piranha.Analyzers
             context.ReportDiagnostic(Diagnostic.Create(Rule, @class.GetLocation(), @class.Identifier.ValueText));
         }
 
-        private static bool InheritsPost(SyntaxNodeAnalysisContext context, INamedTypeSymbol type)
+        private static bool InheritsPost(INamedTypeSymbol type, INamedTypeSymbol postType, INamedTypeSymbol unboundPostType)
         {
-            var postType = context.Compilation.GetTypeByMetadataName($"{Constants.Types.PiranhaModelsPost}`1");
-
-            if (postType == null)
-            {
-                throw new InvalidOperationException("Post type is unavailable. Do you have a missing assembly reference?");
-            }
-
             if (type == null)
             {
                 return false;
             }
 
-            if (type.MetadataName != Constants.Types.PiranhaModelsPost)
+            if (type.SpecialType == SpecialType.System_Object)
+            {
+                return false;
+            }
+
+            if (!type.IsGenericType || !unboundPostType.Equals(type.ConstructUnboundGenericType(), SymbolEqualityComparer.IncludeNullability))
             {
                 var baseType = type.BaseType;
-                if (baseType != null && InheritsPost(context, baseType))
+                if (baseType != null && InheritsPost(baseType, postType, unboundPostType))
                 {
                     return true;
                 }
