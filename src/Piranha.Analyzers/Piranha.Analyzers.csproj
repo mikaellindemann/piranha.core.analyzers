@@ -11,9 +11,9 @@
     <NuspecProperties>version=$(Version);configuration=$(Configuration)</NuspecProperties>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="2.9.8" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="3.4.0"/>
     <PackageReference Include="Piranha" Version="8.1.0" PrivateAssets="all"/>
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.0.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="3.5.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Resources.Designer.cs" DesignTime="True" AutoGen="True" DependentUpon="Resources.resx"/>
@@ -22,5 +22,9 @@
   <ItemGroup>
     <None Update="tools\*.ps1" CopyToOutputDirectory="Always" Pack="true" PackagePath=""/>
     <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false"/>
+  </ItemGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="../../docs/AnalyzerReleases.Shipped.md" />
+    <AdditionalFiles Include="../../docs/AnalyzerReleases.Unshipped.md" />
   </ItemGroup>
 </Project>
