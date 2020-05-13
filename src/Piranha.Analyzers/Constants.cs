@@ -21,6 +21,7 @@ namespace Piranha.Analyzers
         {
             internal const string PiranhaAttributeBuilderPageTypeAttribute = "Piranha.AttributeBuilder.PageTypeAttribute";
             internal const string PiranhaAttributeBuilderPostTypeAttribute = "Piranha.AttributeBuilder.PostTypeAttribute";
+            internal const string PiranhaAttributeBuilderSiteTypeAttribute = "Piranha.AttributeBuilder.SiteTypeAttribute";
 
             internal const string PiranhaExtendFieldAttribute = "Piranha.Extend.FieldAttribute";
             internal const string PiranhaExtendRegionAttribute = "Piranha.Extend.RegionAttribute";
@@ -39,6 +40,7 @@ namespace Piranha.Analyzers
 
             internal const string PiranhaModelsPage = "Piranha.Models.Page";
             internal const string PiranhaModelsPost = "Piranha.Models.Post";
+            internal const string PiranhaModelsSiteContent = "Piranha.Models.SiteContent";
         }
     }
 }

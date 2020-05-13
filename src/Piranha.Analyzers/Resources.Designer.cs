@@ -167,5 +167,32 @@ namespace Piranha.Analyzers {
                 return ResourceManager.GetString("PostTypeAttributeOnlyForClassesInheritingPostAnalyzerTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [SiteType] should only be applied to classes inheriting SiteContent..
+        /// </summary>
+        internal static string SiteTypeAttributeOnlyForClassesInheritingSiteAnalyzerDescription {
+            get {
+                return ResourceManager.GetString("SiteTypeAttributeOnlyForClassesInheritingSiteAnalyzerDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} does not extend SiteContent, but is marked with [SiteType].
+        /// </summary>
+        internal static string SiteTypeAttributeOnlyForClassesInheritingSiteAnalyzerMessageFormat {
+            get {
+                return ResourceManager.GetString("SiteTypeAttributeOnlyForClassesInheritingSiteAnalyzerMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [SiteType] should only be applied to classes inheriting SiteContent..
+        /// </summary>
+        internal static string SiteTypeAttributeOnlyForClassesInheritingSiteAnalyzerTitle {
+            get {
+                return ResourceManager.GetString("SiteTypeAttributeOnlyForClassesInheritingSiteAnalyzerTitle", resourceCulture);
+            }
+        }
     }
 }
