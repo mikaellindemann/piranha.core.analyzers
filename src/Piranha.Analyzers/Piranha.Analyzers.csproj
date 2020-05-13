@@ -4,24 +4,24 @@
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <NoPackageAnalysis>true</NoPackageAnalysis>
-    <Version>8.1.0</Version>
+    <Version>8.2.0</Version>
     <Company>Piranha CMS</Company>
     <AssemblyTitle>Piranha.Analyzers</AssemblyTitle>
     <NuspecFile>../../nuspec/Piranha.Analyzers.nuspec</NuspecFile>
     <NuspecProperties>version=$(Version);configuration=$(Configuration)</NuspecProperties>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Piranha" Version="8.1.0" PrivateAssets="all"/>
     <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.0.0" PrivateAssets="all" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="3.5.0" />
+    <PackageReference Include="Piranha" Version="8.2.0" PrivateAssets="all" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Resources.Designer.cs" DesignTime="True" AutoGen="True" DependentUpon="Resources.resx"/>
-    <EmbeddedResource Update="Resources.resx" Generator="ResXFileCodeGenerator" LastGenOutput="Resources.Designer.cs"/>
+    <Compile Update="Resources.Designer.cs" DesignTime="True" AutoGen="True" DependentUpon="Resources.resx" />
+    <EmbeddedResource Update="Resources.resx" Generator="ResXFileCodeGenerator" LastGenOutput="Resources.Designer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="tools\*.ps1" CopyToOutputDirectory="Always" Pack="true" PackagePath=""/>
-    <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false"/>
+    <None Update="tools\*.ps1" CopyToOutputDirectory="Always" Pack="true" PackagePath="" />
+    <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
   </ItemGroup>
   <ItemGroup>
     <AdditionalFiles Include="../../docs/AnalyzerReleases.Shipped.md" />

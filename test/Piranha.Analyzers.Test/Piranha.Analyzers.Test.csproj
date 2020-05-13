@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <IsPackable>false</IsPackable>
@@ -12,9 +12,9 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Piranha" Version="8.1.0"/>
+    <PackageReference Include="Piranha" Version="8.2.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Piranha.Analyzers\Piranha.Analyzers.csproj"/>
+    <ProjectReference Include="..\..\src\Piranha.Analyzers\Piranha.Analyzers.csproj" />
   </ItemGroup>
 </Project>
