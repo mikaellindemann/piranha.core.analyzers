@@ -68,36 +68,16 @@ namespace Piranha.Analyzers
                 return;
             }
 
-            var references = context.SemanticModel.GetTypeInfo(property.Type).Type.DeclaringSyntaxReferences;
+            var members = context.SemanticModel.GetTypeInfo(property.Type).Type.GetMembers();
 
-            if (references.IsEmpty)
+            if (members.IsEmpty)
             {
                 return;
             }
 
-            var fieldCount = 0;
-            var fieldAttributeType = context.Compilation.GetTypeByMetadataName(Constants.Types.PiranhaExtendFieldAttribute);
+            var propCount = members.Count(m => m is IPropertySymbol);
 
-            foreach (var reference in references)
-            {
-                var node = reference.GetSyntax(context.CancellationToken);
-
-                if (!(node is ClassDeclarationSyntax @class))
-                {
-                    return;
-                }
-
-                var referenceSemanticModel = context.Compilation.GetSemanticModel(node.SyntaxTree);
-
-                // Counts properties marked with FieldAttribute.
-                fieldCount += @class.Members
-                    .OfType<PropertyDeclarationSyntax>()
-                    .Count(p => p.AttributeLists
-                        .Any(al => al.Attributes
-                            .Any(a => fieldAttributeType.Equals(referenceSemanticModel.GetTypeInfo(a, context.CancellationToken).Type, SymbolEqualityComparer.IncludeNullability))));
-            }
-
-            if (fieldCount == 1)
+            if (propCount == 1)
             {
                 context.ReportDiagnostic(Diagnostic.Create(Rule, property.GetLocation()));
             }

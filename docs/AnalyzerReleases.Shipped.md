@@ -5,3 +5,6 @@ Rule ID | Category | Severity | Notes
 --------|----------|----------|-------
 PA0001 | Usage | Info | NonSingleFieldRegionAnalyzer, [Documentation](PA0001/README.md)
 PA0002 | Usage | Error | InvalidSingleFieldComplexRegionAnalyzer, [Documentation](PA0002/README.md)
+PA0003 | Usage | Error | PostTypeAttributeOnlyForClassesInheritingPostAnalyzer, [Documentation](PA0003/README.md)
+PA0004 | Usage | Error | PageTypeAttributeOnlyForClassesInheritingPageAnalyzer, [Documentation](PA0004/README.md)
+PA0005 | Usage | Error | SiteTypeAttributeOnlyForClassesInheritingSiteContentAnalyzer, [Documentation](PA0005/README.md)

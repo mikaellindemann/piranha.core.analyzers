@@ -34,6 +34,7 @@ namespace TestHelper
         private static readonly MetadataReference CSharpSymbolsReference = MetadataReference.CreateFromFile(typeof(CSharpCompilation).Assembly.Location);
         private static readonly MetadataReference CodeAnalysisReference = MetadataReference.CreateFromFile(typeof(Compilation).Assembly.Location);
         private static readonly MetadataReference PiranhaReference = MetadataReference.CreateFromFile(typeof(Piranha.Models.ContentBase).Assembly.Location);
+        private static readonly MetadataReference PiranhaAttributeBuilderReference = MetadataReference.CreateFromFile(typeof(Piranha.AttributeBuilder.PostTypeAttribute).Assembly.Location);
 
         internal static string DefaultFilePathPrefix = "Test";
         internal static string CSharpDefaultFileExt = "cs";
@@ -170,7 +171,8 @@ namespace TestHelper
                 .AddMetadataReference(projectId, SystemCoreReference)
                 .AddMetadataReference(projectId, CSharpSymbolsReference)
                 .AddMetadataReference(projectId, CodeAnalysisReference)
-                .AddMetadataReference(projectId, PiranhaReference);
+                .AddMetadataReference(projectId, PiranhaReference)
+                .AddMetadataReference(projectId, PiranhaAttributeBuilderReference);
 
             int count = 0;
             foreach (var source in sources)

@@ -113,5 +113,86 @@ namespace Piranha.Analyzers {
                 return ResourceManager.GetString("NonSingleFieldRegionAnalyzerTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [PageType] should only be applied to classes inheriting Page..
+        /// </summary>
+        internal static string PageTypeAttributeOnlyForClassesInheritingPageAnalyzerDescription {
+            get {
+                return ResourceManager.GetString("PageTypeAttributeOnlyForClassesInheritingPageAnalyzerDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} does not extend Page, but is marked with [PageType].
+        /// </summary>
+        internal static string PageTypeAttributeOnlyForClassesInheritingPageAnalyzerMessageFormat {
+            get {
+                return ResourceManager.GetString("PageTypeAttributeOnlyForClassesInheritingPageAnalyzerMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [PageType] should only be applied to classes inheriting Page..
+        /// </summary>
+        internal static string PageTypeAttributeOnlyForClassesInheritingPageAnalyzerTitle {
+            get {
+                return ResourceManager.GetString("PageTypeAttributeOnlyForClassesInheritingPageAnalyzerTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [PostType] should only be applied to classes inheriting Post..
+        /// </summary>
+        internal static string PostTypeAttributeOnlyForClassesInheritingPostAnalyzerDescription {
+            get {
+                return ResourceManager.GetString("PostTypeAttributeOnlyForClassesInheritingPostAnalyzerDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} does not extend Post, but is marked with [PostType].
+        /// </summary>
+        internal static string PostTypeAttributeOnlyForClassesInheritingPostAnalyzerMessageFormat {
+            get {
+                return ResourceManager.GetString("PostTypeAttributeOnlyForClassesInheritingPostAnalyzerMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [PostType] should only be applied to classes inheriting Post..
+        /// </summary>
+        internal static string PostTypeAttributeOnlyForClassesInheritingPostAnalyzerTitle {
+            get {
+                return ResourceManager.GetString("PostTypeAttributeOnlyForClassesInheritingPostAnalyzerTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [SiteType] should only be applied to classes inheriting SiteContent..
+        /// </summary>
+        internal static string SiteTypeAttributeOnlyForClassesInheritingSiteAnalyzerDescription {
+            get {
+                return ResourceManager.GetString("SiteTypeAttributeOnlyForClassesInheritingSiteAnalyzerDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} does not extend SiteContent, but is marked with [SiteType].
+        /// </summary>
+        internal static string SiteTypeAttributeOnlyForClassesInheritingSiteAnalyzerMessageFormat {
+            get {
+                return ResourceManager.GetString("SiteTypeAttributeOnlyForClassesInheritingSiteAnalyzerMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [SiteType] should only be applied to classes inheriting SiteContent..
+        /// </summary>
+        internal static string SiteTypeAttributeOnlyForClassesInheritingSiteAnalyzerTitle {
+            get {
+                return ResourceManager.GetString("SiteTypeAttributeOnlyForClassesInheritingSiteAnalyzerTitle", resourceCulture);
+            }
+        }
     }
 }
