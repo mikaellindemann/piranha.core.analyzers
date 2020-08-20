@@ -4,7 +4,7 @@
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <NoPackageAnalysis>true</NoPackageAnalysis>
-    <Version>8.3.0</Version>
+    <Version>8.4.0</Version>
     <Company>Piranha CMS</Company>
     <AssemblyTitle>Piranha.Analyzers</AssemblyTitle>
     <NuspecFile>../../nuspec/Piranha.Analyzers.nuspec</NuspecFile>
