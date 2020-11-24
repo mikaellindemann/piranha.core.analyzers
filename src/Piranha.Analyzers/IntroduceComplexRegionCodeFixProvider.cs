@@ -70,7 +70,7 @@ namespace Piranha.Analyzers
 
         private static string ComplexRegionName(ClassDeclarationSyntax @class)
         {
-            string Name(int number)
+            static string Name(int number)
             {
                 if (number <= 0)
                 {
