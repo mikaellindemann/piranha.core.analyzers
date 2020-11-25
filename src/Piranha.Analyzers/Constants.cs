@@ -19,28 +19,43 @@ namespace Piranha.Analyzers
 
         internal static class Types
         {
-            internal const string PiranhaAttributeBuilderPageTypeAttribute = "Piranha.AttributeBuilder.PageTypeAttribute";
-            internal const string PiranhaAttributeBuilderPostTypeAttribute = "Piranha.AttributeBuilder.PostTypeAttribute";
-            internal const string PiranhaAttributeBuilderSiteTypeAttribute = "Piranha.AttributeBuilder.SiteTypeAttribute";
+            internal static class Piranha
+            {
+                internal static class AttributeBuilder
+                {
+                    internal const string PageTypeAttribute = "Piranha.AttributeBuilder.PageTypeAttribute";
+                    internal const string PostTypeAttribute = "Piranha.AttributeBuilder.PostTypeAttribute";
+                    internal const string SiteTypeAttribute = "Piranha.AttributeBuilder.SiteTypeAttribute";
+                }
 
-            internal const string PiranhaExtendFieldAttribute = "Piranha.Extend.FieldAttribute";
-            internal const string PiranhaExtendRegionAttribute = "Piranha.Extend.RegionAttribute";
+                internal static class Extend
+                {
+                    internal const string FieldAttribute = "Piranha.Extend.FieldAttribute";
+                    internal const string RegionAttribute = "Piranha.Extend.RegionAttribute";
 
-            internal const string PiranhaExtendFieldsAudioField = "Piranha.Extend.Fields.AudioField";
-            internal const string PiranhaExtendFieldsCheckBoxField = "Piranha.Extend.Fields.CheckBoxField";
-            internal const string PiranhaExtendFieldsDateField = "Piranha.Extend.Fields.DateField";
-            internal const string PiranhaExtendFieldsDocumentField = "Piranha.Extend.Fields.DocumentField";
-            internal const string PiranhaExtendFieldsImageField = "Piranha.Extend.Fields.ImageField";
-            internal const string PiranhaExtendFieldsMediaField = "Piranha.Extend.Fields.MediaField";
-            internal const string PiranhaExtendFieldsNumberField = "Piranha.Extend.Fields.NumberField";
-            internal const string PiranhaExtendFieldsPageField = "Piranha.Extend.Fields.PageField";
-            internal const string PiranhaExtendFieldsPostField = "Piranha.Extend.Fields.PostField";
-            internal const string PiranhaExtendFieldsStringField = "Piranha.Extend.Fields.StringField";
-            internal const string PiranhaExtendFieldsVideoField = "Piranha.Extend.Fields.VideoField";
+                    internal static class Fields
+                    {
+                        internal const string AudioField = "Piranha.Extend.Fields.AudioField";
+                        internal const string CheckBoxField = "Piranha.Extend.Fields.CheckBoxField";
+                        internal const string DateField = "Piranha.Extend.Fields.DateField";
+                        internal const string DocumentField = "Piranha.Extend.Fields.DocumentField";
+                        internal const string ImageField = "Piranha.Extend.Fields.ImageField";
+                        internal const string MediaField = "Piranha.Extend.Fields.MediaField";
+                        internal const string NumberField = "Piranha.Extend.Fields.NumberField";
+                        internal const string PageField = "Piranha.Extend.Fields.PageField";
+                        internal const string PostField = "Piranha.Extend.Fields.PostField";
+                        internal const string StringField = "Piranha.Extend.Fields.StringField";
+                        internal const string VideoField = "Piranha.Extend.Fields.VideoField";
+                    }
+                }
 
-            internal const string PiranhaModelsPage = "Piranha.Models.Page";
-            internal const string PiranhaModelsPost = "Piranha.Models.Post";
-            internal const string PiranhaModelsSiteContent = "Piranha.Models.SiteContent";
+                internal static class Models
+                {
+                    internal const string Page = "Piranha.Models.Page";
+                    internal const string Post = "Piranha.Models.Post";
+                    internal const string SiteContent = "Piranha.Models.SiteContent";
+                }
+            }
         }
     }
 }

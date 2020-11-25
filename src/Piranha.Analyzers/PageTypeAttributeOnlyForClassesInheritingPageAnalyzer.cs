@@ -45,7 +45,7 @@ namespace Piranha.Analyzers
                 return;
             }
 
-            var regionAttributeType = context.Compilation.GetTypeByMetadataName(Constants.Types.PiranhaAttributeBuilderPageTypeAttribute);
+            var regionAttributeType = context.Compilation.GetTypeByMetadataName(Constants.Types.Piranha.AttributeBuilder.PageTypeAttribute);
 
             if (regionAttributeType == null)
             {
@@ -69,7 +69,7 @@ namespace Piranha.Analyzers
                 return;
             }
 
-            var pageType = context.Compilation.GetTypeByMetadataName($"{Constants.Types.PiranhaModelsPage}`1");
+            var pageType = context.Compilation.GetTypeByMetadataName($"{Constants.Types.Piranha.Models.Page}`1");
 
             if (pageType == null)
             {

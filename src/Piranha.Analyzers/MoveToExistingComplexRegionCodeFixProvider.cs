@@ -40,7 +40,7 @@ namespace Piranha.Analyzers
 
             var semanticModel = await context.Document.GetSemanticModelAsync(context.CancellationToken);
             var compilation = await context.Document.Project.GetCompilationAsync(context.CancellationToken);
-            var regionAttribute = compilation.GetTypeByMetadataName(Constants.Types.PiranhaExtendRegionAttribute);
+            var regionAttribute = compilation.GetTypeByMetadataName(Constants.Types.Piranha.Extend.RegionAttribute);
 
             if (regionAttribute == null)
             {
@@ -49,7 +49,7 @@ namespace Piranha.Analyzers
 
             var faultyPropertyType = semanticModel.GetTypeInfo(faultyProperty.Type).Type;
 
-            var newFieldProperty = CreateAutoPropertyWithAttributes(SyntaxFactory.ParseTypeName(faultyPropertyType.Name), faultyProperty.Identifier.ValueText, attributeNames: Constants.Types.PiranhaExtendFieldAttribute).WithLeadingTrivia(faultyProperty.GetLeadingTrivia()).WithTrailingTrivia(faultyProperty.GetTrailingTrivia());
+            var newFieldProperty = CreateAutoPropertyWithAttributes(SyntaxFactory.ParseTypeName(faultyPropertyType.Name), faultyProperty.Identifier.ValueText, attributeNames: Constants.Types.Piranha.Extend.FieldAttribute).WithLeadingTrivia(faultyProperty.GetLeadingTrivia()).WithTrailingTrivia(faultyProperty.GetTrailingTrivia());
             var contentClassWithoutFaultyProperty = contentClass.WithMembers(contentClass.Members.Remove(faultyProperty));
 
             var changedRoot = root.ReplaceNode(contentClass, contentClassWithoutFaultyProperty).WithAdditionalAnnotations(Simplifier.Annotation);
