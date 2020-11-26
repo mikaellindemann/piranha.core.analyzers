@@ -168,4 +168,13 @@
   <data name="SiteTypeAttributeOnlyForClassesInheritingSiteAnalyzerTitle" xml:space="preserve">
     <value>[SiteType] should only be applied to classes inheriting SiteContent</value>
   </data>
+  <data name="IncorrectFieldSettingsAnalyzerDescription" xml:space="preserve">
+    <value>Field settings must match the field type.</value>
+  </data>
+  <data name="IncorrectFieldSettingsAnalyzerMessageFormat" xml:space="preserve">
+    <value>{0} does not apply to field of type {1}</value>
+  </data>
+  <data name="IncorrectFieldSettingsAnalyzerTitle" xml:space="preserve">
+    <value>Field settings must match the field type</value>
+  </data>
 </root>

@@ -1,4 +1,4 @@
-version: 8.4.0.{build}
+version: 9.0.0-alpha{build}
 branches:
   only:
   - master
@@ -13,6 +13,8 @@ dotnet_csproj:
   assembly_version: '{version}'
   file_version: '{version}'
   informational_version: '{version}'
+install:
+- git submodule update --init --recursive
 build_script:
 - cmd: dotnet build -c Release
 test_script:

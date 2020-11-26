@@ -38,17 +38,17 @@ namespace Piranha.Analyzers
             context.EnableConcurrentExecution();
 
             // List of built-in field types that, per documentation, is primarily intended for complex regions.
-            context.RegisterSyntaxNodeAction(c => AnalyzeSyntaxNode(c, Constants.Types.PiranhaExtendFieldsAudioField), SyntaxKind.PropertyDeclaration);
-            context.RegisterSyntaxNodeAction(c => AnalyzeSyntaxNode(c, Constants.Types.PiranhaExtendFieldsCheckBoxField), SyntaxKind.PropertyDeclaration);
-            context.RegisterSyntaxNodeAction(c => AnalyzeSyntaxNode(c, Constants.Types.PiranhaExtendFieldsDateField), SyntaxKind.PropertyDeclaration);
-            context.RegisterSyntaxNodeAction(c => AnalyzeSyntaxNode(c, Constants.Types.PiranhaExtendFieldsDocumentField), SyntaxKind.PropertyDeclaration);
-            context.RegisterSyntaxNodeAction(c => AnalyzeSyntaxNode(c, Constants.Types.PiranhaExtendFieldsImageField), SyntaxKind.PropertyDeclaration);
-            context.RegisterSyntaxNodeAction(c => AnalyzeSyntaxNode(c, Constants.Types.PiranhaExtendFieldsMediaField), SyntaxKind.PropertyDeclaration);
-            context.RegisterSyntaxNodeAction(c => AnalyzeSyntaxNode(c, Constants.Types.PiranhaExtendFieldsNumberField), SyntaxKind.PropertyDeclaration);
-            context.RegisterSyntaxNodeAction(c => AnalyzeSyntaxNode(c, Constants.Types.PiranhaExtendFieldsPageField), SyntaxKind.PropertyDeclaration);
-            context.RegisterSyntaxNodeAction(c => AnalyzeSyntaxNode(c, Constants.Types.PiranhaExtendFieldsPostField), SyntaxKind.PropertyDeclaration);
-            context.RegisterSyntaxNodeAction(c => AnalyzeSyntaxNode(c, Constants.Types.PiranhaExtendFieldsStringField), SyntaxKind.PropertyDeclaration);
-            context.RegisterSyntaxNodeAction(c => AnalyzeSyntaxNode(c, Constants.Types.PiranhaExtendFieldsVideoField), SyntaxKind.PropertyDeclaration);
+            context.RegisterSyntaxNodeAction(c => AnalyzeSyntaxNode(c, Constants.Types.Piranha.Extend.Fields.AudioField), SyntaxKind.PropertyDeclaration);
+            context.RegisterSyntaxNodeAction(c => AnalyzeSyntaxNode(c, Constants.Types.Piranha.Extend.Fields.CheckBoxField), SyntaxKind.PropertyDeclaration);
+            context.RegisterSyntaxNodeAction(c => AnalyzeSyntaxNode(c, Constants.Types.Piranha.Extend.Fields.DateField), SyntaxKind.PropertyDeclaration);
+            context.RegisterSyntaxNodeAction(c => AnalyzeSyntaxNode(c, Constants.Types.Piranha.Extend.Fields.DocumentField), SyntaxKind.PropertyDeclaration);
+            context.RegisterSyntaxNodeAction(c => AnalyzeSyntaxNode(c, Constants.Types.Piranha.Extend.Fields.ImageField), SyntaxKind.PropertyDeclaration);
+            context.RegisterSyntaxNodeAction(c => AnalyzeSyntaxNode(c, Constants.Types.Piranha.Extend.Fields.MediaField), SyntaxKind.PropertyDeclaration);
+            context.RegisterSyntaxNodeAction(c => AnalyzeSyntaxNode(c, Constants.Types.Piranha.Extend.Fields.NumberField), SyntaxKind.PropertyDeclaration);
+            context.RegisterSyntaxNodeAction(c => AnalyzeSyntaxNode(c, Constants.Types.Piranha.Extend.Fields.PageField), SyntaxKind.PropertyDeclaration);
+            context.RegisterSyntaxNodeAction(c => AnalyzeSyntaxNode(c, Constants.Types.Piranha.Extend.Fields.PostField), SyntaxKind.PropertyDeclaration);
+            context.RegisterSyntaxNodeAction(c => AnalyzeSyntaxNode(c, Constants.Types.Piranha.Extend.Fields.StringField), SyntaxKind.PropertyDeclaration);
+            context.RegisterSyntaxNodeAction(c => AnalyzeSyntaxNode(c, Constants.Types.Piranha.Extend.Fields.VideoField), SyntaxKind.PropertyDeclaration);
         }
 
         private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context, string fieldName)

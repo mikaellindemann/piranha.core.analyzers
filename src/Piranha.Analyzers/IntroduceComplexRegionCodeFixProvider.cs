@@ -51,11 +51,11 @@ namespace Piranha.Analyzers
                     // Create complex region with the faulty region as a field.
                     var complexRegionClass = CreateComplexRegionClass(
                         complexRegionName,
-                        CreateAutoPropertyWithAttributes(faultyProperty.Type, faultyProperty.Identifier.ValueText, attributeNames: Constants.Types.PiranhaExtendFieldAttribute).WithLeadingTrivia(faultyProperty.GetLeadingTrivia()).WithTrailingTrivia(faultyProperty.GetTrailingTrivia())
+                        CreateAutoPropertyWithAttributes(faultyProperty.Type, faultyProperty.Identifier.ValueText, attributeNames: Constants.Types.Piranha.Extend.FieldAttribute).WithLeadingTrivia(faultyProperty.GetLeadingTrivia()).WithTrailingTrivia(faultyProperty.GetTrailingTrivia())
                     );
 
                     // Create a new region property of the new complex region type.
-                    var regionProperty = CreateAutoPropertyWithAttributes(SyntaxFactory.ParseTypeName(complexRegionClass.Identifier.ValueText), "MyRegion", attributeNames: Constants.Types.PiranhaExtendRegionAttribute)
+                    var regionProperty = CreateAutoPropertyWithAttributes(SyntaxFactory.ParseTypeName(complexRegionClass.Identifier.ValueText), "MyRegion", attributeNames: Constants.Types.Piranha.Extend.RegionAttribute)
                         .WithTrailingTrivia(faultyProperty.GetTrailingTrivia());
 
                     // Replace the faulty region property with the proper one, add the region class as inner class.
@@ -70,7 +70,7 @@ namespace Piranha.Analyzers
 
         private static string ComplexRegionName(ClassDeclarationSyntax @class)
         {
-            string Name(int number)
+            static string Name(int number)
             {
                 if (number <= 0)
                 {

@@ -194,5 +194,32 @@ namespace Piranha.Analyzers {
                 return ResourceManager.GetString("SiteTypeAttributeOnlyForClassesInheritingSiteAnalyzerTitle", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Field settings must match the field type.
+        /// </summary>
+        internal static string IncorrectFieldSettingsAnalyzerDescription {
+            get {
+                return ResourceManager.GetString("IncorrectFieldSettingsAnalyzerDescription", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to {0} does not apply to field of type {1}.
+        /// </summary>
+        internal static string IncorrectFieldSettingsAnalyzerMessageFormat {
+            get {
+                return ResourceManager.GetString("IncorrectFieldSettingsAnalyzerMessageFormat", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Field settings must match the field type.
+        /// </summary>
+        internal static string IncorrectFieldSettingsAnalyzerTitle {
+            get {
+                return ResourceManager.GetString("IncorrectFieldSettingsAnalyzerTitle", resourceCulture);
+            }
+        }
     }
 }

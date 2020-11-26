@@ -44,7 +44,7 @@ namespace Piranha.Analyzers
                 return;
             }
 
-            var regionAttributeType = context.Compilation.GetTypeByMetadataName(Constants.Types.PiranhaExtendRegionAttribute);
+            var regionAttributeType = context.Compilation.GetTypeByMetadataName(Constants.Types.Piranha.Extend.RegionAttribute);
 
             if (regionAttributeType == null)
             {

@@ -45,7 +45,7 @@ namespace Piranha.Analyzers
                 return;
             }
 
-            var regionAttributeType = context.Compilation.GetTypeByMetadataName(Constants.Types.PiranhaAttributeBuilderPostTypeAttribute);
+            var regionAttributeType = context.Compilation.GetTypeByMetadataName(Constants.Types.Piranha.AttributeBuilder.PostTypeAttribute);
 
             if (regionAttributeType == null)
             {
@@ -69,7 +69,7 @@ namespace Piranha.Analyzers
                 return;
             }
 
-            var postType = context.Compilation.GetTypeByMetadataName($"{Constants.Types.PiranhaModelsPost}`1");
+            var postType = context.Compilation.GetTypeByMetadataName($"{Constants.Types.Piranha.Models.Post}`1");
 
             if (postType == null)
             {
