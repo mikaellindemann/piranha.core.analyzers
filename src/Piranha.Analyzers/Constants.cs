@@ -31,7 +31,9 @@ namespace Piranha.Analyzers
                 internal static class Extend
                 {
                     internal const string FieldAttribute = "Piranha.Extend.FieldAttribute";
+                    internal const string FieldSettingsAttribute = "Piranha.Extend.FieldSettingsAttribute";
                     internal const string RegionAttribute = "Piranha.Extend.RegionAttribute";
+                    internal const string StringFieldSettingsAttribute = "Piranha.Extend.StringFieldSettingsAttribute";
 
                     internal static class Fields
                     {
