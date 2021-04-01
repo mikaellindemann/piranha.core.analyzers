@@ -85,6 +85,7 @@ namespace Piranha.Analyzers.Test
                 "using Piranha.AttributeBuilder;",
                 "using Piranha.Extend;",
                 "using Piranha.Extend.Fields;",
+                "using Piranha.Extend.Fields.Settings;",
                 "using Piranha.Models;",
                 "",
                 "namespace ConsoleApplication1",
@@ -108,6 +109,7 @@ namespace Piranha.Analyzers.Test
                 "using Piranha.AttributeBuilder;",
                 "using Piranha.Extend;",
                 "using Piranha.Extend.Fields;",
+                "using Piranha.Extend.Fields.Settings;",
                 "using Piranha.Models;",
                 "",
                 "namespace ConsoleApplication1",
@@ -127,7 +129,7 @@ namespace Piranha.Analyzers.Test
                 Severity = DiagnosticSeverity.Error,
                 Locations = new[]
                 {
-                    new DiagnosticResultLocation("Test0.cs", 11, 10)
+                    new DiagnosticResultLocation("Test0.cs", 12, 10)
                 }
             };
 
