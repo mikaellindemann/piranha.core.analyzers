@@ -27,6 +27,7 @@ namespace Piranha.Analyzers.Test
                 "using Piranha.AttributeBuilder;",
                 "using Piranha.Extend;",
                 "using Piranha.Extend.Fields;",
+                "using Piranha.Extend.Fields.Settings;",
                 "using Piranha.Models;",
                 "",
                 "namespace ConsoleApplication1",
@@ -50,6 +51,7 @@ namespace Piranha.Analyzers.Test
                 "using Piranha.AttributeBuilder;",
                 "using Piranha.Extend;",
                 "using Piranha.Extend.Fields;",
+                "using Piranha.Extend.Fields.Settings;",
                 "using Piranha.Models;",
                 "",
                 "namespace ConsoleApplication1",
@@ -69,7 +71,65 @@ namespace Piranha.Analyzers.Test
                 Severity = DiagnosticSeverity.Error,
                 Locations = new[]
                 {
-                    new DiagnosticResultLocation("Test0.cs", 11, 10)
+                    new DiagnosticResultLocation("Test0.cs", 12, 10)
+                }
+            };
+
+            await VerifyCSharpDiagnosticAsync(test, expected);
+        }
+
+        [Fact]
+        public async Task ColorFieldSettingsAppliedToColorField()
+        {
+            var test = string.Join(Environment.NewLine,
+                "using Piranha.AttributeBuilder;",
+                "using Piranha.Extend;",
+                "using Piranha.Extend.Fields;",
+                "using Piranha.Extend.Fields.Settings;",
+                "using Piranha.Models;",
+                "",
+                "namespace ConsoleApplication1",
+                "{",
+                "    [SiteType]",
+                "    class TypeName : SiteContent<TypeName>",
+                "    {",
+                "        [ColorFieldSettings(DisallowInput = true)]",
+                "        [Field]",
+                "        public ColorField Color { get; set; }",
+                "    }",
+                "}");
+
+            await VerifyCSharpDiagnosticAsync(test);
+        }
+
+        [Fact]
+        public async Task ColorFieldSettingsAppliedToAudioField()
+        {
+            var test = string.Join(Environment.NewLine,
+                "using Piranha.AttributeBuilder;",
+                "using Piranha.Extend;",
+                "using Piranha.Extend.Fields;",
+                "using Piranha.Extend.Fields.Settings;",
+                "using Piranha.Models;",
+                "",
+                "namespace ConsoleApplication1",
+                "{",
+                "    [SiteType]",
+                "    class TypeName : SiteContent<TypeName>",
+                "    {",
+                "        [ColorFieldSettings(DisallowInput = true)]",
+                "        [Field]",
+                "        public AudioField BackgroundMusic { get; set; }",
+                "    }",
+                "}");
+
+            var expected = new DiagnosticResult{
+                Id = "PA0006",
+                Message = "ColorFieldSettingsAttribute does not apply to field of type AudioField",
+                Severity = DiagnosticSeverity.Error,
+                Locations = new[]
+                {
+                    new DiagnosticResultLocation("Test0.cs", 12, 10)
                 }
             };
 

@@ -1,4 +1,0 @@
-[submodule "modules/piranha.core"]
-	path = modules/piranha.core
-	url = https://github.com:/piranhacms/piranha.core.git
-	branch = version/v9.0
