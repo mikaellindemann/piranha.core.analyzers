@@ -27,7 +27,7 @@ namespace Piranha.Analyzers
         private static readonly LocalizableString Description = new LocalizableResourceString(nameof(Resources.NonSingleFieldRegionAnalyzerDescription), Resources.ResourceManager, typeof(Resources));
         private const string Category = "Usage";
 
-        private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Info, isEnabledByDefault: true, description: Description);
+        private static readonly DiagnosticDescriptor Rule = new(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Info, isEnabledByDefault: true, description: Description);
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
         
@@ -53,7 +53,7 @@ namespace Piranha.Analyzers
 
         private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context, string fieldName)
         {
-            if (!(context.Node is PropertyDeclarationSyntax pds))
+            if (context.Node is not PropertyDeclarationSyntax pds)
             {
                 return;
             }

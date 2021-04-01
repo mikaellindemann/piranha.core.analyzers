@@ -26,7 +26,7 @@ namespace Piranha.Analyzers
         private static readonly LocalizableString Title = new LocalizableResourceString(nameof(Resources.PageTypeAttributeOnlyForClassesInheritingPageAnalyzerTitle), Resources.ResourceManager, typeof(Resources));
         private static readonly LocalizableString MessageFormat = new LocalizableResourceString(nameof(Resources.PageTypeAttributeOnlyForClassesInheritingPageAnalyzerMessageFormat), Resources.ResourceManager, typeof(Resources));
         private static readonly LocalizableString Description = new LocalizableResourceString(nameof(Resources.PageTypeAttributeOnlyForClassesInheritingPageAnalyzerDescription), Resources.ResourceManager, typeof(Resources));
-        private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Error, isEnabledByDefault: true, description: Description);
+        private static readonly DiagnosticDescriptor Rule = new(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Error, isEnabledByDefault: true, description: Description);
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
 
@@ -40,7 +40,7 @@ namespace Piranha.Analyzers
 
         private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
         {
-            if (!(context.Node is AttributeSyntax attribute))
+            if (context.Node is not AttributeSyntax attribute)
             {
                 return;
             }
@@ -59,12 +59,12 @@ namespace Piranha.Analyzers
                 return;
             }
 
-            if (!(attribute.Parent is AttributeListSyntax attributeList))
+            if (attribute.Parent is not AttributeListSyntax attributeList)
             {
                 return;
             }
 
-            if (!(attributeList.Parent is ClassDeclarationSyntax @class))
+            if (attributeList.Parent is not ClassDeclarationSyntax @class)
             {
                 return;
             }
@@ -82,7 +82,7 @@ namespace Piranha.Analyzers
             {
                 foreach (var type in @class.BaseList.Types)
                 {
-                    if (!(context.SemanticModel.GetTypeInfo(type.Type, context.CancellationToken).ConvertedType is INamedTypeSymbol convertedType))
+                    if (context.SemanticModel.GetTypeInfo(type.Type, context.CancellationToken).ConvertedType is not INamedTypeSymbol convertedType)
                     {
                         continue;
                     }

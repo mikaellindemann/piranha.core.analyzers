@@ -84,7 +84,7 @@ namespace Piranha.Analyzers
 
                 var node = await reference.GetSyntaxAsync(context.CancellationToken);
 
-                if (!(node is ClassDeclarationSyntax regionClassDeclaration))
+                if (node is not ClassDeclarationSyntax regionClassDeclaration)
                 {
                     continue;
                 }

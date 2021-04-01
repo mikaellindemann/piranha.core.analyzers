@@ -25,7 +25,7 @@ namespace Piranha.Analyzers
         private static readonly LocalizableString Title = new LocalizableResourceString(nameof(Resources.InvalidSingleFieldComplexRegionAnalyzerTitle), Resources.ResourceManager, typeof(Resources));
         private static readonly LocalizableString MessageFormat = new LocalizableResourceString(nameof(Resources.InvalidSingleFieldComplexRegionAnalyzerMessageFormat), Resources.ResourceManager, typeof(Resources));
         private static readonly LocalizableString Description = new LocalizableResourceString(nameof(Resources.InvalidSingleFieldComplexRegionAnalyzerDescription), Resources.ResourceManager, typeof(Resources));
-        private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Error, isEnabledByDefault: true, description: Description);
+        private static readonly DiagnosticDescriptor Rule = new(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Error, isEnabledByDefault: true, description: Description);
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
 
@@ -39,7 +39,7 @@ namespace Piranha.Analyzers
 
         private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
         {
-            if (!(context.Node is AttributeSyntax attribute))
+            if (context.Node is not AttributeSyntax attribute)
             {
                 return;
             }
@@ -58,12 +58,12 @@ namespace Piranha.Analyzers
                 return;
             }
 
-            if (!(attribute.Parent is AttributeListSyntax attributeList))
+            if (attribute.Parent is not AttributeListSyntax attributeList)
             {
                 return;
             }
 
-            if (!(attributeList.Parent is PropertyDeclarationSyntax property))
+            if (attributeList.Parent is not PropertyDeclarationSyntax property)
             {
                 return;
             }
