@@ -39,17 +39,10 @@ namespace Piranha.Analyzers
 
         private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
         {
-            if (!(context.Node is AttributeSyntax attribute))
+            if (context.Node is not AttributeSyntax attribute)
             {
                 return;
             }
-
-            // var regionAttributeType = context.Compilation.GetTypeByMetadataName(Constants.Types.Piranha.Extend.RegionAttribute);
-
-            // if (regionAttributeType == null)
-            // {
-            //     return;
-            // }
 
             var attributeType = context.SemanticModel.GetTypeInfo(attribute, context.CancellationToken).Type;
             var fieldSettingsAttributeType = context.Compilation.GetTypeByMetadataName(Constants.Types.Piranha.Extend.FieldSettingsAttribute);
@@ -66,12 +59,12 @@ namespace Piranha.Analyzers
                 return;
             }
 
-            if (!(attribute.Parent is AttributeListSyntax attributeList))
+            if (attribute.Parent is not AttributeListSyntax attributeList)
             {
                 return;
             }
 
-            if (!(attributeList.Parent is PropertyDeclarationSyntax property))
+            if (attributeList.Parent is not PropertyDeclarationSyntax property)
             {
                 return;
             }
